@@ -21,6 +21,10 @@ public class WordRepository {
         mAllWords = mWordDao.getAlphabetizedWords();
     }
 
+    public void deleteAll(){
+        WordRoomDatabase.databaseWriteExecutor.execute(() -> mWordDao.deleteAll());
+    }
+
     // Room exécute toutes les requêtes sur un thread distinct.
     // Les données LiveData observées avertiront l'observateur lorsque les données auront changé.
     public LiveData<List<Word>> getAllWords() {
